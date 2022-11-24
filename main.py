@@ -14,17 +14,15 @@ class Window(QMainWindow):
         self.info.clicked.connect(self.search)
 
     def search(self):
-        cofe = self.cur.execute("""SELECT * FROM coffee""").fetchall()
+        coffee = self.cur.execute("""SELECT * FROM coffee""").fetchall()
         self.coffee.setColumnCount(7)
-        self.coffee.setRowCount(1)
-        print(3)
         self.coffee.setHorizontalHeaderLabels(['id', 'Название', 'Степень прожарки', 'Молотый', 'Описание вкуса',
-                                               'Цена', 'Объём упаковки'])
-        # for i, elem in enumerate(cofe):
-        #     print('Ай')
-        #     for j, value in enumerate(elem):
-        #         print('Ой', end='-')
-        #         self.cofye.setItem(i, j, QTableWidgetItem(str(value)))
+                                               'Цена', 'Объём упаковки(мл)'])
+        self.coffee.setRowCount(len(coffee))
+        for i, elem in enumerate(coffee):
+            for j, value in enumerate(elem):
+                self.coffee.setItem(i, j, QTableWidgetItem(str(value)))
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

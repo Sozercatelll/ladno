@@ -17,15 +17,15 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>10</x>
       <y>40</y>
-      <width>291</width>
+      <width>771</width>
       <height>241</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QTableWidget" name="tableWidget"/>
+      <widget class="QTableWidget" name="coffee"/>
      </item>
      <item>
       <widget class="QPushButton" name="info">
