@@ -17,7 +17,7 @@ class Window(QMainWindow):
         coffee = self.cur.execute("""SELECT * FROM coffee""").fetchall()
         self.coffee.setColumnCount(7)
         self.coffee.setHorizontalHeaderLabels(['id', 'Название', 'Степень прожарки', 'Молотый', 'Описание вкуса',
-                                               'Цена', 'Объём упаковки(мл)'])
+                                               'Цена', 'Объём упаковки (мл)'])
         self.coffee.setRowCount(len(coffee))
         for i, elem in enumerate(coffee):
             for j, value in enumerate(elem):
