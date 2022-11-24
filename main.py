@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QMainWindow, QApplication
 from PyQt5 import uic
 from PyQt5.QtGui import QPainter, QColor
 import sys
+from random import randint as rnd
 
 
 class Window(QMainWindow):
@@ -25,7 +26,8 @@ class Window(QMainWindow):
     def draw(self, qp):
         qp.setBrush(QColor(255, 255, 20))
         qp.setPen(QColor(255, 255, 40))
-        qp.drawEllipse(30, 40, 500, 500)
+        r = rnd(50, 501)
+        qp.drawEllipse(30, 40, r, r)
 
     def paint(self):
         self.painter = True
