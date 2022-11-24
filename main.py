@@ -1,38 +1,30 @@
-from PyQt5.QtWidgets import QMainWindow, QApplication
+from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem
 from PyQt5 import uic
-from PyQt5.QtGui import QPainter, QColor
 import sys
-from random import randint as rnd
+import sqlite3 as sql
 
 
 class Window(QMainWindow):
     def __init__(self):
         super(Window, self).__init__()
 
-        uic.loadUi('UI.ui', self)
-        self.painter = False
-        self.b1.clicked.connect(self.paint)
-        self.b2.clicked.connect(self.paint)
-        self.b3.clicked.connect(self.paint)
-        self.b4.clicked.connect(self.paint)
+        uic.loadUi('main.ui', self)
+        self.con = sql.connect('coffee.sqlite')
+        self.cur = self.con.cursor()
+        self.info.clicked.connect(self.search)
 
-    def paintEvent(self, event):
-        if self.painter:
-            qp = QPainter()
-            qp.begin(self)
-            self.draw(qp)
-            qp.end()
-
-    def draw(self, qp):
-        qp.setBrush(QColor(255, 255, 20))
-        qp.setPen(QColor(255, 255, 40))
-        r = rnd(50, 501)
-        qp.drawEllipse(30, 40, r, r)
-
-    def paint(self):
-        self.painter = True
-        self.repaint()
-
+    def search(self):
+        cofe = self.cur.execute("""SELECT * FROM coffee""").fetchall()
+        self.coffee.setColumnCount(7)
+        self.coffee.setRowCount(1)
+        print(3)
+        self.coffee.setHorizontalHeaderLabels(['id', 'Название', 'Степень прожарки', 'Молотый', 'Описание вкуса',
+                                               'Цена', 'Объём упаковки'])
+        # for i, elem in enumerate(cofe):
+        #     print('Ай')
+        #     for j, value in enumerate(elem):
+        #         print('Ой', end='-')
+        #         self.cofye.setItem(i, j, QTableWidgetItem(str(value)))
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
