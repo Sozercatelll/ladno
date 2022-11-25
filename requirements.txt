@@ -1,4 +1,4 @@
-pyqt5
+PyQt5
 pyqt-tools
 sqlite3
 sys
